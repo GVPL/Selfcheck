@@ -3,25 +3,47 @@
 ?>
 <div id="cko_head">
 	<h1>
-		<span id="swap" style="z-index:1000">
-			<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
-			<?php if ($item_image!='nonbarcoded'){ ?>
-				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
-			<?php }?>
-		</span>
-		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<?php echo $module_name;?>
-		<br /><br />
+		
+		<span style="font-size:13px;"></span>&nbsp;
 	</h1>
+
+	<!--  ============= finish/cancel buttons ============= -->
+		<table id="cko_buttons" cellpadding="5">
+			<tr>
+				<td>
+				
+				<div class="ok_button button" id="done_button" title="selfcheck_button">
+					<h1>Done</h1>
+				</div>
+				</td>
+				
+                
+				
+			</tr>
+		</table>
+
+<br class="clear" />
+
+		<div id="pre_cko_buttons">
+			<div class="cancel_button button" title="selfcheck_button">
+				<h1>Cancel</h1>
+			</div>
+			<div class="thanks_button button">
+				<h1>Thanks</h1>
+			</div>
+				
+		</div>
+	<!--  ============= end finish/cancel buttons ============= -->
 </div>
 
 <div id="cko_wrapper">
 	<div>
 		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
 		<a class="tab">
-			Checkouts: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
+			Currently Checked Out: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
 		<?php if ($show_available_holds){?>
 			<span> |</span>
-			Available Holds: <?php echo $_SESSION['available_holds'];?>
+			Ready for pickup: <?php echo $_SESSION['available_holds'];?>
 		<?php }
 			if ($show_fines){?>
 			<span> |</span>
@@ -46,7 +68,7 @@
 		
 <!--  ============= checked out items container ============= -->
 		<div id="item_list">
-			<table border="0" cellpadding="3" cellspacing="0" align="center">
+			<table border="0" cellpadding="3" cellspacing="0" align="center" width="100%">
 				<tbody>
 				</tbody>
 			</table>
@@ -56,46 +78,7 @@
 
 	</div>
 	
-<!--  ============= finish/cancel buttons ============= -->
-	<table id="cko_buttons" cellpadding="5">
-		<tr>
-			<td>
-				<div class="ok_button button" id="print" title="selfcheck_button">
-					<h1>Print Receipt</h1>
-				</div>
-				<div class="thanks_button button" id="print_thanks">
-					<h1>Thanks</h1>
-				</div>
-			</td>
-			<?php if (!empty($_SESSION['email']) && $allow_email_receipts){?>
-			<td>
-				<div class="ok_button button" id="email" title="selfcheck_button">
-					<h1>Email Receipt</h1>
-				</div>
-				<div class="thanks_button button" id="email_thanks">
-					<h1>Thanks</h1>
-				</div>
-			</td>
-			<?php }?>
-			<td>
-				<div class="ok_button button" id="no_print" title="selfcheck_button">
-					<h1>No Receipt</h1>
-				</div>
-				<div class="thanks_button button corners" id="no_print_thanks">
-					<h1>Thanks</h1>
-				</div>
-			</td>
-		</tr>
-	</table>
-	<div id="pre_cko_buttons">
-		<div class="cancel_button button" title="selfcheck_button">
-			<h1>Cancel</h1>
-		</div>
-		<div class="thanks_button button">
-			<h1>Thanks</h1>
-		</div>
-	</div>
-<!--  ============= end finish/cancel buttons ============= -->
+
 
 </div>
 
@@ -121,6 +104,13 @@
 
 <script type="text/javascript">
 $(document).ready(function() { 
+	//Auto scroll checkout box
+	var item_list_scroll = document.getElementById("item_list");
+	item_list_scroll.scrollTop = item_list_scroll.scrollHeight;
+	
+	
+	
+	
 	$('#pre_cko_buttons .cancel_button').click(
 		function(){
 			$(this).hide();
@@ -135,22 +125,23 @@ $(document).ready(function() {
 	var receipt_header;
 	<?php 
 	if (!empty($receipt_footer)){
-		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
+		//echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
 	}
 	if (!empty($receipt_header)){
 		echo 'receipt_header="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_header)).'</td></tr>";';
 	}?>
-	$("#print").click( //receipt print function
+	$("#print").click( //receipt email function
 		function(){
-		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
-		$('#no_print,#email').css('visibility','hidden');
+		$("#print_item_list table tbody").append(receipt_footer);
+		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		print();
-		setTimeout(function(){
-				window.location.href='processes/logout.php'
-		},1500);
-	}); 
+		$.post("processes/print_receipt.php", { receipt: $('#print_item_list').html() },
+		function(data){
+			$('body').append(data);
+		});
+	});
+	
 	
 	$("#email").click( //receipt email function
 		function(){
@@ -175,6 +166,23 @@ $(document).ready(function() {
 				},
 			(1000));  
 	});
+	
+
+
+	
+	//Open receipt options
+	$("#done_button").click( //no print function
+		function(){
+			$('#done_button').css('visibility','hidden');
+			setTimeout(
+			function(){
+				$('#done_popup').show();
+				$.dbj_sound.play('<?php echo $error_sound;?>');
+				},
+			(1));  
+	});
+	
+	
 	//////////////////post checkouts function
 	$('#form').submit(function(){
 		tb_remove();

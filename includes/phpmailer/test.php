@@ -1,15 +1,15 @@
     <?php
-    require("phpmailer/class.phpmailer.php");
+    require("");
     $mail = new PHPMailer();
     $mail->IsSMTP(); // telling the class to use SMTP
-    $mail->Host = "10.222.150.7"; // SMTP server
+    $mail->Host = ""; // SMTP server
     $mail->SMTPAuth = true;
-    $mail->Username = "ankeny\emelton";
+    $mail->Username = "";
     $mail->Password = "Pa\$\$word";
 
-    $mail->FromName = "Eric Melton";
-    $mail->From = "emelton@ankenyiowa.gov";//sender addy
-    $mail->AddAddress("ericmelton1@gmail.com");//recip. email addy
+    $mail->FromName = "";
+    $mail->From = "";//sender addy
+    $mail->AddAddress("");//recip. email addy
 
     $mail->Subject = "Your Subject";
     $mail->Body = "hi ! \nBLA BLA BLA !";

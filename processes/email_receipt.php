@@ -31,7 +31,7 @@ $mail->From = $email_from_address;//sender addy
 $mail->AddAddress($_SESSION['email']);//recip. email addy
 
 $mail->Subject = $email_subject;
-$mail->Body = implode("\n",$receipt_header).str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n".implode("\n",$receipt_footer);
+$mail->Body = implode("\n",$receipt_header).str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n".implode("\n\n $receipt_msg \n\n",$receipt_footer);
 $mail->WordWrap = 70;
 $mail->Send(); 
 ?>

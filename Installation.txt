@@ -1,5 +1,7 @@
 Self-check Installation
 
+URL: /type=kids or /type=adults 
+
 ----------------------------
 REQUIREMENTS
 ----------------------------

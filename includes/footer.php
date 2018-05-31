@@ -1,3 +1,40 @@
+<div id="done_popup">
+	<h1>Select a receipt option</h1>
+	<!--  ============= finish/cancel buttons ============= -->
+		
+				<?php if (!empty($_SESSION['email']) && $allow_email_receipts){?>
+					<br>
+					<div class="ok_button button" id="email" title="selfcheck_button">
+						<h1>Email Receipt</h1>
+					</div>
+					<div class="thanks_button button" id="email_thanks">
+						<h1>Thanks</h1>
+					</div>
+				
+				<?php }?>
+		
+                <?php if (!empty($printer_location)){?>
+					<br>
+					<div class="ok_button button" id="print" title="selfcheck_button">
+						<h1>Print Receipt</h1>
+					</div>
+					<div class="thanks_button button" id="print_thanks">
+						<h1>Thanks</h1>
+					</div>
+					
+				
+				<?php }?>
+				
+				    <br>
+					<div class="ok_button button" id="no_print" title="selfcheck_button">
+						<h1>No Receipt</h1>
+					</div>
+					<div class="thanks_button button corners" id="no_print_thanks">
+						<h1>Thanks</h1>
+					</div>
+				
+</div>	
+
 <!--session timeout prompt -->
 <div id="idle_timer">
 	<h1>You've been inactive for <?php echo $inactivity_timeout/1000;?> seconds.</h1>

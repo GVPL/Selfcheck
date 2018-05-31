@@ -968,7 +968,7 @@ class SMTP
      *
      * Implements rfc 821: VRFY <SP> <string> <CRLF>
      *
-     * SMTP CODE SUCCESS: 250,251
+     * SMTP CODE SUCCESS: 250,251 
      * SMTP CODE FAILURE: 550,551,553
      * SMTP CODE ERROR  : 500,501,502,421
      * @access public

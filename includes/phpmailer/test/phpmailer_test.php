@@ -60,16 +60,16 @@ class phpmailerTest extends TestCase
 
         $this->Mail = new PHPMailer();
 
-        $this->Mail->Priority = 3;
-        $this->Mail->Encoding = "8bit";
-        $this->Mail->CharSet = "iso-8859-1";
-        $this->Mail->From = "unit_test@phpmailer.sf.net";
-        $this->Mail->FromName = "Unit Tester";
+        $this->Mail->Priority = ;
+        $this->Mail->Encoding = "";
+        $this->Mail->CharSet = "";
+        $this->Mail->From = "";
+        $this->Mail->FromName = "";
         $this->Mail->Sender = "";
-        $this->Mail->Subject = "Unit Test";
+        $this->Mail->Subject = "";
         $this->Mail->Body = "";
         $this->Mail->AltBody = "";
-        $this->Mail->WordWrap = 0;
+        $this->Mail->WordWrap = ;
         $this->Mail->Host = $global_vars["mail_host"];
         $this->Mail->Port = 25;
         $this->Mail->Helo = "localhost.localdomain";
@@ -77,15 +77,15 @@ class phpmailerTest extends TestCase
         $this->Mail->Username = "";
         $this->Mail->Password = "";
         $this->Mail->PluginDir = $INCLUDE_DIR;
-		$this->Mail->AddReplyTo("no_reply@phpmailer.sf.net", "Reply Guy");
-        $this->Mail->Sender = "unit_test@phpmailer.sf.net";
+		$this->Mail->AddReplyTo("", "");
+        $this->Mail->Sender = "";
 
         if(strlen($this->Mail->Host) > 0)
             $this->Mail->Mailer = "smtp";
         else
         {
             $this->Mail->Mailer = "mail";
-            $this->Sender = "unit_test@phpmailer.sf.net";
+            $this->Sender = "";
         }
         
         global $global_vars;

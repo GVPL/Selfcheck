@@ -24,7 +24,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the          *
  * GNU General Public License for more details.                          *
  *                                                                       *
- * Author(s): Jon Abernathy <jon@chuggnutt.com>                          *
+ * Author(s): Jon Abernathy                           *
  *                                                                       *
  * Last modified: 08/08/07                                               *
  *                                                                       *
@@ -34,16 +34,16 @@
 /**
  *  Takes HTML and converts it to formatted, plain text.
  *
- *  Thanks to Alexander Krug (http://www.krugar.de/) to pointing out and
+ *  Thanks to Alexander Krug to pointing out and
  *  correcting an error in the regexp search array. Fixed 7/30/03.
  *
  *  Updated set_html() function's file reading mechanism, 9/25/03.
  *
- *  Thanks to Joss Sanglier (http://www.dancingbear.co.uk/) for adding
+ *  Thanks to Joss Sanglier for adding
  *  several more HTML entity codes to the $search and $replace arrays.
  *  Updated 11/7/03.
  *
- *  Thanks to Darius Kasperavicius (http://www.dar.dar.lt/) for
+ *  Thanks to Darius Kasperavicius for
  *  suggesting the addition of $allowed_tags and its supporting function
  *  (which I slightly modified). Updated 3/12/04.
  *
@@ -51,13 +51,13 @@
  *  <TH> tag was missing, and suggesting an appropriate fix.
  *  Updated 8/25/04.
  *
- *  Thanks to Mathieu Collas (http://www.myefarm.com/) for finding a
+ *  Thanks to Mathieu Collas for finding a
  *  display/formatting bug in the _build_link_list() function: email
  *  readers would show the left bracket and number ("[1") as part of the
  *  rendered email address.
  *  Updated 12/16/04.
  *
- *  Thanks to Wojciech Bajon (http://histeria.pl/) for submitting code
+ *  Thanks to Wojciech Bajon for submitting code
  *  to handle relative links, which I hadn't considered. I modified his
  *  code a bit to handle normal HTTP links and MAILTO links. Also for
  *  suggesting three additional HTML entity codes to search for.
@@ -67,29 +67,29 @@
  *  for the _build_link_list() function: "https".
  *  Updated 04/06/05.
  *
- *  Thanks to Marc Bertrand (http://www.dresdensky.com/) for
+ *  Thanks to Marc Bertrand for
  *  suggesting a revision to the word wrapping functionality; if you
  *  specify a $width of 0 or less, word wrapping will be ignored.
  *  Updated 11/02/06.
  *
  *  *** Big housecleaning updates below:
  *
- *  Thanks to Colin Brown (http://www.sparkdriver.co.uk/) for
+ *  Thanks to Colin Brown for
  *  suggesting the fix to handle </li> and blank lines (whitespace).
- *  Christian Basedau (http://www.movetheweb.de/) also suggested the
+ *  Christian Basedau also suggested the
  *  blank lines fix.
  *
- *  Special thanks to Marcus Bointon (http://www.synchromedia.co.uk/),
- *  Christian Basedau, Norbert Laposa (http://ln5.co.uk/),
+ *  Special thanks to Marcus Bointon,
+ *  Christian Basedau, Norbert Laposa ,
  *  Bas van de Weijer, and Marijn van Butselaar
  *  for pointing out my glaring error in the <th> handling. Marcus also
  *  supplied a host of fixes.
  *
- *  Thanks to Jeffrey Silverman (http://www.newtnotes.com/) for pointing
+ *  Thanks to Jeffrey Silverman for pointing
  *  out that extra spaces should be compressed--a problem addressed with
  *  Marcus Bointon's fixes but that I had not yet incorporated.
  *
- *    Thanks to Daniel Schledermann (http://www.typoconsult.dk/) for
+ *    Thanks to Daniel Schledermann for
  *  suggesting a valuable fix with <a> tag handling.
  *
  *  Thanks to Wojciech Bajon (again!) for suggesting fixes and additions,
@@ -100,7 +100,7 @@
  *
  *  *** End of the housecleaning updates. Updated 08/08/07.
  *
- *  @author Jon Abernathy <jon@chuggnutt.com>
+ *  @author Jon Abernathy 
  *  @version 1.0.0
  *  @since PHP 4.0.2
  */

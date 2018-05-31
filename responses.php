@@ -42,12 +42,13 @@ if (!empty($_POST['form1']) OR !empty($_POST['sc_policies'])){
 		if (empty($_POST['item'])){
 			$error[]="You didn't enter an item barcode.";
     		} 
-    		if (empty($_POST['patron']) && empty($_POST['ckdout'])){
+    		if (empty($_POST['']) && empty($_POST[''])){
     		$error[]="You didn't enter a patron barcode.";
     		} 
 		if (empty($error)){ //no errors so far go with the sip2
 			// Identify a patron
-			$mysip->patron = $_POST['patron'];
+			$mysip->patron = $_POST[''];
+			$mysip->patronpwd ='';
 			
 			// connect to SIP server
 			$mysip->connect();
@@ -76,7 +77,7 @@ if (!empty($_POST['form1']) OR !empty($_POST['sc_policies'])){
 		<table style="width:50%" align="center">
 		<tr>
 				<td style="width:20%;white-space:nowrap">patron id/barcode:</td>
-				<td><input type="text" name="patron" /><input type="hidden" name="form1" value="1" /></td>
+				<td><input type="text" name="patron" value=""/><input type="hidden" name="form1" value="1" /></td>
 			</tr>
 			<tr>
 				<td style="width:20%;white-space:nowrap">item id/barcode:</td>

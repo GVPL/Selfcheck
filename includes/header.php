@@ -5,9 +5,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 <title><?php echo $library_name;?> - <?php echo $module_name;?></title>
-<script type="text/javascript" src="processes/combine.php?type=javascript&files=jquery.js,sound.js,center.js,thickbox.js,countdown.js,qtip.js"></script>
-<link type="text/css" rel="stylesheet" href="processes/combine.php?type=css&files=selfcheck.css,thickbox.css" />
+
+<!-- Piwik -->
+<script type="text/javascript"> 
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://selfcheck.libnet.gvpl.ca/piwik//";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', <?=$piwik_site_id;?>]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+
+</script>
+<noscript><p><img src="http://selfcheck.libnet.gvpl.ca/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+
+<!-- jQuery & jQuery UI + theme (required) -->
+<link href="/css/jquery-ui.css" rel="stylesheet">
+<script src="/js/jquery1.8.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript" src="processes/combine.php?type=javascript&files=sound.js,center.js,thickbox.js,countdown.js,qtip.js"></script>
+<link type="text/css" rel="stylesheet" href="processes/combine.php?type=css&files=selfcheck_<?=$selfcheck_type.$screen_size;?>.css,thickbox.css" />
 
 <?php if ($hide_cursor_pointer){?>
 <style type="text/css">
@@ -78,3 +104,4 @@ $(document).click(function(){
 </script>
 </head>
 <body>
+	<div class="logo"><img src="images/logo.png"></div>

@@ -43,7 +43,7 @@
 			<td><div title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
 		</tr>
 	</table>
-	<div onclick="$('#barcode').val($('#prompt .keypad_screen').text());$('#form').submit();" class="ok_button button" title="selfcheck_button" style="width:100%;">
+	<div onclick="$('#barcode').val($('#prompt .keypad_screen').text());$('#password').focus();" class="ok_button button" title="selfcheck_button" style="width:100%;">
 		<h1>OK</h1>
 	</div>
 </div>

@@ -5,18 +5,24 @@
 session_start();
 include_once('../config.php');
 include_once('../includes/sip2.php');
+include_once('../includes/patronapi.php');
 include_once('../includes/json_encode.php');
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
 	$mysip = new sip2;
 
+	//extract and format account information and assign to session variables
+	$_SESSION['patron_barcode']=$_POST['barcode'];
+	$_SESSION['patron_password']=$_POST['password'];
+
 	// Set host name
 	$mysip->hostname = $sip_hostname;
 	$mysip->port = $sip_port;
 	
 	// Identify a patron
-	$mysip->patron = $_POST['barcode'];
+	$mysip->patron = $_SESSION['patron_barcode'];
+    $mysip->patronpwd = $_SESSION['patron_password'];
 	
 	// connect to SIP server
 	$connect = $mysip->connect();
@@ -34,10 +40,16 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	// Get patron info response
 	$ptrnmsg = $mysip->msgPatronInformation('charged');
 
+	
+
 	// parse the raw response into an array
 	$patron_info = $mysip->parsePatronInfoResponse($mysip->get_message($ptrnmsg));
 
 	//print_r($patron_info);
+
+	$fp = fopen('/var/www/logs.txt', 'w');
+	fwrite($fp, print_r($patron_info, TRUE));
+	fclose($fp);
 	
 	$mysip->msgEndPatronSession();
 
@@ -48,8 +60,8 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 		exit;
 	}
 	
-	//extract and format account information and assign to session variables
-	$_SESSION['patron_barcode']=$_POST['barcode'];
+	
+	
 	
 	$patron_name='';
 	if (!empty($patron_info['variable']['AE'][0])){

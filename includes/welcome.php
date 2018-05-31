@@ -1,8 +1,6 @@
 <div id="banner_title">
-	<h2 style="color:#4d8b27">
-		 <span>&nbsp;Welcome</span>
- 		<br />
-		<?php echo $_SESSION['name'];?>!
+	<h2 style="color:#d6dee5">
+		 Welcome!
 	</h2>
 </div>
 
@@ -16,14 +14,14 @@
 	<h2>
 		<?php echo $welcome_screen_text;?>
 		<br />
-		<span style="font-size:15px;color:#FCFCFC;font-style:italic"><?php echo $welcome_screen_subtext;?></span>
+		<span style="font-size:15px;color:#f15e3d;font-style:italic"><?php echo $welcome_screen_subtext;?></span>
 	</h2>
 </div>
 
-<div class="cancel_button button" style="margin:100px auto 0 auto;"  id="cancel" title="selfcheck_button">
+<div class="cancel_all_button button" style="position: fixed; top: 0; right: 0; margin:80px 80px 0 auto;"  id="cancel" title="selfcheck_button">
 	<h1>Cancel</h1>
 </div>
-<div class="thanks_button button" style="margin:100px auto 0 auto;">
+<div class="thanks_button button" style="position: fixed; top: 0; right: 0; margin:80px 80px 0 auto;">
 	<h1>Thanks</h1>
 </div>
 

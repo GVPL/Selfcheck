@@ -23,6 +23,7 @@ if (!empty($_SESSION['patron_barcode'])){
 		$item_barcode='bunk_barcode';
 	} else {
 		$item_barcode=$_POST['barcode'];
+		
 	}
 
 	$mysip = new sip2;
@@ -33,6 +34,8 @@ if (!empty($_SESSION['patron_barcode'])){
 	
 	// Identify a patron
 	$mysip->patron = $_SESSION['patron_barcode'];
+    
+    $mysip->patronpwd = $_SESSION['patron_password'];
 	
 	// connect to SIP server
 	$connect=$mysip->connect();
@@ -122,8 +125,12 @@ if (!empty($_SESSION['patron_barcode'])){
 	$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
 	$_SESSION['checkouts_this_session']=$_SESSION['checkouts_this_session']+1;
 	
-	$due_date=strtotime($checkout['variable']['AH'][0]);
-	$due_date=date($due_date_format, $due_date);
+	//$due_date=strtotime($checkout['variable']['AH'][0][0]);
+	//$due_date=date($due_date_format, $due_date);
+	
+	$due_date = ($checkout['variable']['AH']);
+	$due_date = array_shift($due_date);
+	
 	
 	echo '
 	<tr>
